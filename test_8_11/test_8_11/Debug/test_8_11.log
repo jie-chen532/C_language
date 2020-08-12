@@ -1,14 +1,17 @@
-﻿生成启动时间为 2020/8/12 1:35:15。
-     1>项目“D:\bit（c语言）\test_8_11\test_8_11\test_8_11.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2020/8/12 23:44:10。
+     1>项目“D:\github仓库\C_language\test_8_11\test_8_11\test_8_11.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt text.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt text.c text1.c
+         text1.c
          text.c
+         正在生成代码...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\bit（c语言）\test_8_11\Debug\test_8_11.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\bit（c语言）\test_8_11\Debug\test_8_11.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\bit（c语言）\test_8_11\Debug\test_8_11.lib" /MACHINE:X86 Debug\text.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\github仓库\C_language\test_8_11\Debug\test_8_11.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\github仓库\C_language\test_8_11\Debug\test_8_11.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\github仓库\C_language\test_8_11\Debug\test_8_11.lib" /MACHINE:X86 Debug\text.obj
          Debug\text1.obj
-         test_8_11.vcxproj -> D:\bit（c语言）\test_8_11\Debug\test_8_11.exe
-     1>已完成生成项目“D:\bit（c语言）\test_8_11\test_8_11\test_8_11.vcxproj”(Build 个目标)的操作。
+     1>text.obj : error LNK2019: 无法解析的外部符号 _Add，该符号在函数 _main 中被引用
+     1>D:\github仓库\C_language\test_8_11\Debug\test_8_11.exe : fatal error LNK1120: 1 个无法解析的外部命令
+     1>已完成生成项目“D:\github仓库\C_language\test_8_11\test_8_11\test_8_11.vcxproj”(Build 个目标)的操作 - 失败。
 
-生成成功。
+生成失败。
 
-已用时间 00:00:01.43
+已用时间 00:00:09.03
