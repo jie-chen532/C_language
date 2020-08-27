@@ -76,7 +76,7 @@
 
 //实现一个函数，打印乘法口诀表，口诀表的行数和列数自己指定
 
-void nine_nine(int a)
+void print_table(int a)
 {
 	int i = 0;
 	int j = 0;
@@ -94,6 +94,6 @@ int main()
 {
 	int i = 0;
 	scanf("%d", &i);
-	nine_nine(i);
+	print_table(i);
 	return 0;
 }
