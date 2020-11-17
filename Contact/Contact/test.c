@@ -28,6 +28,12 @@ void test()
 	//创建通讯录
 	Contact con = { 0 };
 
+	//初始化
+	InitPeoInfo(&con);
+
+	//加载文件内容
+	LoadPeoInfo(&con);
+
 	int input = 0;
 	do
 	{
@@ -55,7 +61,10 @@ void test()
 			ShowPeoInfo(&con);
 			break;
 		case Exit:
-			ClearPeoInfo();
+			//保存到文件
+			SavePeoInfo(&con);
+			DestoryPeoInfo(&con);
+			//ClearPeoInfo();
 			printf("退出通讯录\n");
 			break;
 		default:

@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include<assert.h>
 #include<string.h>
+#include<stdlib.h>
 
 #define MAX_NAME 20
 #define MAX_SEX 5
@@ -12,6 +13,9 @@
 #define MAX_QQ 15
 #define MAX_COUNT 100 //最大人数
 
+
+#define INI 5   //刚开始先开辟5个人
+#define INCREASE  2   //内存不够，每次增加2个人的空间
 
 
 typedef struct PeoInfo
@@ -27,14 +31,36 @@ typedef struct PeoInfo
 
 
 //通讯录结构体
+//typedef struct Contact
+//{
+//	PeoInfo data[MAX_COUNT];
+//	int size;//人数
+//}Contact;
+
 typedef struct Contact
 {
-	PeoInfo data[MAX_COUNT];
-	int size;//人数
+
+	PeoInfo *data;
+	int size;//已经存储总人数
+	int capacity;//当前最大容量
 }Contact;
 
 
+
+//动态开辟内存  初始化通讯录
+void InitPeoInfo(Contact *p);
+
+//free动态内存
+void DestoryPeoInfo(Contact *p);
+
+//增容
+void CheckCapacity(Contact *p);
+
+//加载文件
+void LoadPeoInfo(Contact *p);
+
 //增加信息
+//void AddPeoInfo(Contact *p);
 void AddPeoInfo(Contact *p);
 
 
@@ -58,5 +84,8 @@ void ModifyPeoInfo(Contact *p);
 void SortPeoInfo(Contact *p);
 
 
+//保存到文件
+void SavePeoInfo(Contact *p);
+
 //清空数据
-void ClearPeoInfo();
+//void ClearPeoInfo();

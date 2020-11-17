@@ -4,33 +4,124 @@
 #include"contact.h"
 
 
+//使用malloc动态开辟内存
+//初始化
+void InitPeoInfo(Contact *p)
+{
+	assert(p != NULL);
+	p->size = 0;
+	p->capacity = INI;
+	p->data = (PeoInfo *)malloc(INI*sizeof(PeoInfo));
+	if (NULL == p->data)
+	{
+		perror("InitPeoInfo::malloc");
+		return;
+	}
+}
+
+//free动态内存
+void DestoryPeoInfo(Contact *p)
+{
+	assert(p != NULL);
+	free(p->data);
+	p->data = NULL;
+	p->capacity = 0;
+	p->size = 0;
+}
+
+//增容
+void CheckCapacity(Contact *p)
+{
+	if (p->size == p->capacity)
+	{
+		PeoInfo * str = (PeoInfo *)realloc(p->data, p->capacity*sizeof(PeoInfo)+INCREASE*sizeof(PeoInfo));
+		if (str == NULL)
+		{
+			perror("AddPeoInfo::realloc");
+			return;
+		}
+		else
+		{
+			p->data = str;
+			p->capacity = p->capacity + INCREASE;
+			str = NULL;
+			printf("增容成功\n");
+		}
+	}
+}
+
+//加载文件
+void LoadPeoInfo(Contact *p)
+{
+	FILE *pf = fopen("Contact.data", "rb");
+	if (pf == NULL)
+	{
+		perror("LoadPeoInfo::fopen");
+		return;
+	}
+	PeoInfo tmp = { 0 };
+	while (fread(&tmp, sizeof(PeoInfo), 1, pf))
+	{
+		CheckCapacity(p);
+		p->data[p->size] = tmp;
+		p->size++;
+	}
+	fclose(pf);
+	pf = NULL;
+}
+
 //增加信息
 void AddPeoInfo(Contact *p)
 {
 	assert(p != NULL);
-	if (p->size == MAX_COUNT)
-	{
-		printf("通讯录已满\n");
-	}
-	else
-	{
-		printf("请输入姓名>:");
-		scanf("%s", p->data[p->size].name);
-		printf("请输入性别>:");
-		scanf("%s", p->data[p->size].sex);
-		printf("请输入年龄>:");
-		scanf("%d", &(p->data[p->size].age));
-		printf("请输入电话>:");
-		scanf("%s", p->data[p->size].tele);
-		printf("请输入地址>:");
-		scanf("%s", p->data[p->size].address);
-		printf("请输入qq>:");
-		scanf("%s", p->data[p->size].qq);
 
-		p->size++;
-		printf("添加成功\n");
-	}
+	//判断容量
+	CheckCapacity(p);
+
+	printf("请输入姓名>:");
+	scanf("%s", p->data[p->size].name);
+	printf("请输入性别>:");
+	scanf("%s", p->data[p->size].sex);
+	printf("请输入年龄>:");
+	scanf("%d", &(p->data[p->size].age));
+	printf("请输入电话>:");
+	scanf("%s", p->data[p->size].tele);
+	printf("请输入地址>:");
+	scanf("%s", p->data[p->size].address);
+	printf("请输入qq>:");
+	scanf("%s", p->data[p->size].qq);
+		
+	p->size++;
+	printf("添加成功\n");
 }
+
+//增加信息
+//void AddPeoInfo(Contact *p)
+//{
+//	assert(p != NULL);
+//	if (p->size == MAX_COUNT)
+//	{
+//		printf("通讯录已满\n");
+//	}
+//	else
+//	{
+//		printf("请输入姓名>:");
+//		scanf("%s", p->data[p->size].name);
+//		printf("请输入性别>:");
+//		scanf("%s", p->data[p->size].sex);
+//		printf("请输入年龄>:");
+//		scanf("%d", &(p->data[p->size].age));
+//		printf("请输入电话>:");
+//		scanf("%s", p->data[p->size].tele);
+//		printf("请输入地址>:");
+//		scanf("%s", p->data[p->size].address);
+//		printf("请输入qq>:");
+//		scanf("%s", p->data[p->size].qq);
+//
+//		p->size++;
+//		printf("添加成功\n");
+//	}
+//}
 
 
 
@@ -81,7 +172,7 @@ void DeletePeoInfo(Contact *p)
 		int ret=FindPeoByName(p, name);
 		if (ret == -1)
 		{
-			printf("通讯录没有此人");
+			printf("通讯录没有此人\n");
 		}
 		else
 		{
@@ -180,6 +271,23 @@ void SortPeoInfo(Contact *p)
 	printf("排序成功\n");
 }
 
+//保存到文件中
+void SavePeoInfo(Contact *p)
+{
+	FILE *pf = fopen("Contact.data", "wb");
+	if (pf == NULL)
+	{
+		perror("SavePeoInfo::writting");
+		return;
+	}
+	int i = 0;
+	for (i = 0; i < p->size; i++)
+	{
+		fwrite(p->data + i, sizeof(PeoInfo), 1, pf);
+	}
+	fclose(pf);
+	pf = NULL;
+}
 
 //清空数据
 void ClearPeoInfo()
